@@ -2,8 +2,6 @@
 //  RootModel.swift
 //  MovieAppTest
 //
-//  Created by REVE Systems on 22/11/23.
-//
 
 import Foundation
 

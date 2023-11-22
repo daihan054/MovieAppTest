@@ -2,8 +2,6 @@
 //  Constants.swift
 //  MovieAppTest
 //
-//  Created by REVE Systems on 22/11/23.
-//
 
 struct Constants {
     static let apiKey = "0705745fab01c302640a45caf2a2db98"
