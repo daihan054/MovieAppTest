@@ -2,14 +2,13 @@
 //  Webservice.swift
 //  MovieAppTest
 //
-//  Created by REVE Systems on 22/11/23.
 //
 
 import Foundation
 
 class WebService {
     
-    func fetchMovies(completion: @escaping ([MovieViewModel]?) -> Void) {
+    func fetchMovies(completion: @escaping ([MovieInfo]?) -> Void) {
         let query = "marvel"
         
         let apiUrl = "\(Constants.baseURL)\(Constants.Endpoints.searchMovie)?api_key=\(Constants.apiKey)&query=\(query)"
@@ -24,22 +23,19 @@ class WebService {
                     return
                 }
                 
-                // Check if data is available
                 if let data = data {
                     do {
-                        // Decode the JSON data using JSONDecoder and MovieData model
+                        
                         let decoder = JSONDecoder()
                         let movieData = try decoder.decode(MovieData.self, from: data)
                         
-                        // Extract and create an array of MovieViewModels
                         let movies = movieData.results
                         let movieViewModels = movies.map { movie in
-                            return MovieViewModel(posterPath: movie.posterPath ?? "",
+                            return MovieInfo(posterPath: movie.posterPath ?? "",
                                                   originalTitle: movie.originalTitle,
                                                   overview: movie.overview)
                         }
                         
-                        // Call the completion handler with the array of MovieViewModels
                         completion(movieViewModels)
                         
                     } catch {
@@ -48,7 +44,7 @@ class WebService {
                     }
                 }
                 
-            }.resume() // Start the URLSession task
+            }.resume()
             
         }
     }
