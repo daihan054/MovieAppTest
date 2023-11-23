@@ -17,7 +17,6 @@ class MovieListViewController: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
 
-        loader.startAnimating()
         movieListViewModel.fetchMovies()
         
         movieListViewModel.isLoading.bind { [weak self] isLoading in
@@ -29,7 +28,6 @@ class MovieListViewController: UIViewController {
         movieListViewModel.movieViewModels.bind { [weak self] _ in
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
-                self?.loader.stopAnimating()
             }
         }
     }
